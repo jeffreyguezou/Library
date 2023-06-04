@@ -14,22 +14,22 @@
     <div class="addBookSection">
         <button class="addButton" id="addButton">Add Book</button>
     </div>
-    <div class="displayBook">
-
+    <div class="bookShelf" id="bookShelf">
+        
     </div>
     <div class="modal hidden" id="addBookModal">
-        <form action="submit" class="addBookForm">
+        <form action="" class="addBookForm">
             <h3>Add new book</h3>
             <input class="input" type="text" id="title" placeholder="Title" />
             <input class="input" type="text" id="author" placeholder="Author"/>
             <input class="input" type="number" id="pages" placeholder="Pages"/>
-            <input class="input" type="text" id="pages" placeholder="Genre"/>
+            <input class="input" type="text" id="genre" placeholder="Genre"/>
             <div class="isRead">
                 <label for="isRead">Have you read it?</label>
                 <input class="checkbox" type="checkbox" id="isRead" />
             </div>
             <div class="submitSection">
-                <button class="submitButton" type="submit">Submit</button>
+                <button id="submitButton" class="submitButton" type="submit">Submit</button>
             </div>
         </form>
     </div>
