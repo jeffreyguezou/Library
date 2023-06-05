@@ -91,10 +91,16 @@ function updateLibrary(){
     if(readBtn.textContent == "Read"){
         readBtn.textContent = "Not Read Yet";
         readBtn.classList.replace('submitButton','unreadBook');
+        let bookIndex = myLibrary.findIndex(book=> book.title == title.textContent)
+        myLibrary[bookIndex].read = false;
+        updateStorage();
     }
     else if(readBtn.textContent == "Not Read Yet"){
         readBtn.textContent = "Read";
         readBtn.classList.replace('unreadBook','submitButton');
+        let bookIndex = myLibrary.findIndex(book=> book.title == title.textContent)
+        myLibrary[bookIndex].read = true;
+        updateStorage();
     }
   } )
     
@@ -129,9 +135,9 @@ function addBooktoLibrary(){
     let authorInput = form.querySelector("#author").value;
     let pagesInput = form.querySelector("#pages").value;
     let genreInput = form.querySelector("#genre").value;
-    let isReadStatus = form.querySelector("#isRead");
-    console.log(isReadStatus);
-    let newBook = new book(titleInput,authorInput,genreInput,pagesInput,true)
+    let isReadStatus = form.querySelector("#isRead").checked;
+   
+    let newBook = new book(titleInput,authorInput,genreInput,pagesInput,isReadStatus)
     myLibrary.push(newBook);
     updateStorage();
     updateLibrary();
