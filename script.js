@@ -24,23 +24,33 @@ function book(title,author,genre,pages,read){
 }
 
 let addButton =  document.querySelector("#addButton");
-console.log(addButton);
 let modal = document.querySelector(".modal");
-console.log(modal);
 let bookShelf = document.querySelector("#bookShelf");
 let submitButton = document.querySelector("#submitButton");
-console.log(submitButton);
 let form = document.querySelector(".addBookForm");
-console.log(form);
+
+
+
+function updateStorage(){
+    localStorage.setItem('library',JSON.stringify(myLibrary));
+    
+}
+function getStoredLibrary(){
+    myLibrary = JSON.parse(localStorage.getItem('library'));
+
+}
 
 
 addButton.addEventListener("click",()=>{
     modal.classList.toggle('hidden');
 })
 
+
+
 updateLibrary();
 function updateLibrary(){
-myLibrary.forEach(book => {
+    getStoredLibrary();
+    myLibrary.forEach(book => {
     createCard(book);
 });
 }
@@ -98,6 +108,13 @@ myLibrary.forEach(book => {
   buttonGroup.appendChild(removeBtn);
   bookCard.appendChild(buttonGroup);
   bookShelf.append(bookCard);
+  removeBtn.addEventListener("click",(e)=>{
+    console.log(e.target.parentNode.parentElement.childNodes);
+    let removedTitle =  e.target.parentNode.parentElement.childNodes[0].innerText;
+    console.log(removedTitle);
+    
+    e.target.parentNode.parentElement.remove();
+  })
 }
 
 //submitForm
@@ -114,9 +131,12 @@ function addBooktoLibrary(){
     console.log(isReadStatus);
     let newBook = new book(titleInput,authorInput,genreInput,pagesInput,true)
     myLibrary.push(newBook);
-    console.log(myLibrary);
+    updateStorage();
     updateLibrary();
+    modal.classList.toggle('hidden');
     
 }
 
-    
+const removeBook = (e)=>{
+    console.log(e);
+}
