@@ -56,6 +56,7 @@ header{
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
+    gap:15px;
 }
 .bookCard{
     width: 200px;
