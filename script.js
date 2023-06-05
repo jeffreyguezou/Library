@@ -29,7 +29,11 @@ let bookShelf = document.querySelector("#bookShelf");
 let submitButton = document.querySelector("#submitButton");
 let form = document.querySelector(".addBookForm");
 
-updateStorage();
+if(!localStorage.getItem('library')) {
+    updateStorage();
+  } else {
+    getStoredLibrary();
+  }
 
 function updateStorage() {
     localStorage.setItem('library', JSON.stringify(myLibrary));
