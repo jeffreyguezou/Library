@@ -49,6 +49,7 @@ addButton.addEventListener("click",()=>{
 
 updateLibrary();
 function updateLibrary(){
+
     getStoredLibrary();
     myLibrary.forEach(book => {
     createCard(book);
@@ -110,9 +111,10 @@ function updateLibrary(){
   bookShelf.append(bookCard);
   removeBtn.addEventListener("click",(e)=>{
     console.log(e.target.parentNode.parentElement.childNodes);
-    let removedTitle =  e.target.parentNode.parentElement.childNodes[0].innerText;
+    let removedTitle =  e.target.parentNode.parentElement.childNodes[0].innerText; //removing card from DOM using node value
     console.log(removedTitle);
-    
+    myLibrary =  myLibrary.filter(book => book.title !== removedTitle);
+    updateStorage();
     e.target.parentNode.parentElement.remove();
   })
 }
@@ -135,8 +137,4 @@ function addBooktoLibrary(){
     updateLibrary();
     modal.classList.toggle('hidden');
     
-}
-
-const removeBook = (e)=>{
-    console.log(e);
 }
